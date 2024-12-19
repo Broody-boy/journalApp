@@ -27,6 +27,10 @@ public class JournalEntryService {
         return journalEntryRepository.findById(id);
     }
 
+    public void deleteById(ObjectId id){
+        journalEntryRepository.deleteById(id);
+    }
+
 }
 
 // controller ---> service ---> repository(interface)
