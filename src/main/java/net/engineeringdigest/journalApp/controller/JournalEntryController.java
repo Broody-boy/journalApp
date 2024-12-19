@@ -12,7 +12,7 @@ import java.util.Map;
 @RequestMapping("/_journal")
 public class JournalEntryController {
 
-    private Map<Long, JournalEntry> journalEntries = new HashMap<>();
+    private Map<String, JournalEntry> journalEntries = new HashMap<>();
 
     @GetMapping
     public List<JournalEntry> getAll(){
@@ -21,7 +21,7 @@ public class JournalEntryController {
 
     @PostMapping
     public boolean createEntry(@RequestBody JournalEntry myEntry){
-        journalEntries.put(Long.valueOf(myEntry.getId()), myEntry);
+        journalEntries.put(String.valueOf(myEntry.getId()), myEntry);
         return true;
     }
 
@@ -36,7 +36,7 @@ public class JournalEntryController {
     }
 
     @PutMapping("id/{id}")
-    public JournalEntry updateJournalById(@PathVariable Long id, @RequestBody JournalEntry myEntry){
+    public JournalEntry updateJournalById(@PathVariable String id, @RequestBody JournalEntry myEntry){
         return journalEntries.put(id, myEntry);
     }
 }

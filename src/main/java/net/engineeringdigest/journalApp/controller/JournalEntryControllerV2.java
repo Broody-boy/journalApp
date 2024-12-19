@@ -5,10 +5,8 @@ import net.engineeringdigest.journalApp.service.JournalEntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/journal")
@@ -23,9 +21,10 @@ public class JournalEntryControllerV2 {
     }
 
     @PostMapping
-    public boolean createEntry(@RequestBody JournalEntry myEntry) {
+    public JournalEntry createEntry(@RequestBody JournalEntry myEntry) {
+        myEntry.setDate(LocalDateTime.now());
         journalEntryService.saveEntry(myEntry);
-        return true;
+        return myEntry;
     }
 
     @GetMapping("id/{myId}")
