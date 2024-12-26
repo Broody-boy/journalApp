@@ -28,4 +28,15 @@ public class UserController {
     public void createUser(@RequestBody User user) {
         userService.saveEntry(user);
     }
+
+    @PutMapping
+    public ResponseEntity<?> updateUser(@RequestBody User user) {
+        User userInDb = userService.findByUsername(user.getUsername());
+        if (userInDb != null) {
+            userInDb.setUsername(user.getUsername());
+            userInDb.setPassword(user.getPassword());
+            userService.saveEntry(userInDb);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

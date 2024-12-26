@@ -38,6 +38,10 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username);
+    }
+
 }
 
 // controller ---> service ---> repository(interface)
