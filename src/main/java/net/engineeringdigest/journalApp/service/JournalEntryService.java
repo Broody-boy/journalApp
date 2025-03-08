@@ -30,6 +30,10 @@ public class JournalEntryService {
         userService.saveEntry(user);
     }
 
+    public void saveEntry(JournalEntry journalEntry){   // overloaded method for just updating entry as reference in user already exists
+        journalEntryRepository.save(journalEntry);
+    }
+
     public List<JournalEntry> getAll(){
         return journalEntryRepository.findAll();
     }
