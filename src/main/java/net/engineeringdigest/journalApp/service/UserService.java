@@ -59,6 +59,10 @@ public class UserService {
         return userRepository.findByUserName(userName);
     }
 
+    // In vid, controller directly uses UserRepository to delete the user. I have made this function in service instead:
+    public void deleteByUsername(String userName){
+        userRepository.deleteByUserName(userName);
+    }
 }
 
 // controller ---> service ---> repository(interface)
