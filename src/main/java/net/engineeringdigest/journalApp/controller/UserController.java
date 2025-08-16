@@ -16,12 +16,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-// Will be made in admin:
-//    @GetMapping
-//    public List<User> getAllUsers() {
-//        return userService.getAll();
-//    }
-
     @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody User user) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
