@@ -9,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -23,15 +22,7 @@ public class UserService {
 
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public void saveOldEntry(User user){
-        try {
-            userRepository.save(user);
-        } catch (Exception e) {
-            log.error("Exception", e);
-        }
-    }
-
-    public void saveEntry(User user) {
+    public void saveNewUser(User user) {
 
         try {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -41,6 +32,14 @@ public class UserService {
             log.error("Exception", e);
         }
 
+    }
+
+    public void saveUser(User user) {
+        try {
+            userRepository.save(user);
+        } catch (Exception e) {
+            log.error("Exception", e);
+        }
     }
 
     public List<User> getAll(){
